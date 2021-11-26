@@ -30,7 +30,7 @@ namespace Open_order
         }
         void Open()
         {
-            string[] dirs = Directory.GetDirectories(@"c:\", tb_order.Text, SearchOption.TopDirectoryOnly);
+            string[] dirs = Directory.GetDirectories(@"\\auxserver\ОГК\0. Чертежи компас", "*" + tb_order.Text + "*", SearchOption.TopDirectoryOnly);
             foreach (var item in dirs)
             {
                 Process.Start(item);
@@ -41,6 +41,14 @@ namespace Open_order
         private void b_open_Click(object sender, RoutedEventArgs e)
         {
             Open();
+        }
+
+        private void tb_order_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Open();
+            }
         }
     }
 }
