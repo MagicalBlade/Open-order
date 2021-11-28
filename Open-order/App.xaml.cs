@@ -13,5 +13,6 @@ namespace Open_order
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
