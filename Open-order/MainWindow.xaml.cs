@@ -1,30 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Drawing; // Добавить ссылку
-using System.Windows.Forms; // Добавить ссылку, необходимо использовать
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Collections.Specialized;
 
 namespace Open_order
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -51,11 +35,17 @@ namespace Open_order
                 {
                     if (Directory.Exists(@checkBox.Content.ToString()))
                     {
-                        string[] dirs = Directory.GetDirectories(@checkBox.Content.ToString(), order, SearchOption.TopDirectoryOnly);
+                        string[] dirs = Directory.GetDirectories(@checkBox.Content.ToString(), "*" + order + "*", SearchOption.TopDirectoryOnly);
                         sum_dir += dirs.Length;
                         foreach (var dir_item in dirs)
                         {
-                            Process.Start(dir_item);
+                            ProcessStartInfo processStartInfo = new ProcessStartInfo
+                            {
+                                FileName = dir_item,
+                                WindowStyle = ProcessWindowStyle.Maximized
+                            };
+                            Process.Start(processStartInfo);
+
                         }
                     }
                     else
@@ -136,5 +126,6 @@ namespace Open_order
             e.Cancel = true;
             this.Visibility = Visibility.Hidden;
         }
+        
     }
 }

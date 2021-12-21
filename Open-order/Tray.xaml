@@ -11,7 +11,7 @@
         <Label x:Key="TrayMenu" Content="Exit"/>
     </Window.Resources>
     <Grid>
-        <tb:TaskbarIcon Visibility="Visible" ToolTipText="Test" IconSource="z.ico" TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown">
+        <tb:TaskbarIcon x:Name="tbi_order" Visibility="Visible" ToolTipText="Test" IconSource="search.ico" TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Click="show_order" Header="Открыть заказ"/>
